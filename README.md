@@ -15,7 +15,7 @@ Each of these steps will be expanded upon in the following sections.
 
 ## 1. Accessing the basecalled reads
 
-By default, guppy will store basecalled reads (along with raw .fast5 data, logs...) into a complex hierarchy of directories starting with the name of the experiment parent as the parent directory. If demultiplexing was enabled during basecalling, the reads will be sorted and stored in directories referring to the barcode detected in that read. If a quality score threshold has been set (the default is 7), guppy will divide reads further into "passed" or "failed" based on this threshold (a more complete description can be found in the well-documented [Guppy Manual](https://community.nanoporetech.com/protocols/Guppy-protocol/v/GPB_2003_v1_revU_14Dec2018) (requires login)).
+By default, guppy will store basecalled reads (along with raw .fast5 data, logs...) into a complex hierarchy of directories starting with the name of the experiment parent as the parent directory. If demultiplexing was enabled during basecalling, the reads will be sorted and stored in directories referring to the barcode detected in that read. If a quality score threshold has been set (the default is 7), guppy will divide reads further into "passed" or "failed" based on this threshold (a more complete description can be found in the well-documented [Guppy Manual](https://community.nanoporetech.com/protocols/Guppy-protocol/v/GPB_2003_v1_revU_14Dec2018) (requires login).
 
 A typical run output can look like this (shortened for brevity):
 
