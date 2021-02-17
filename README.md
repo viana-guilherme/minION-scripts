@@ -2,7 +2,7 @@
 Welcome to the repository for the ont-derived microbial community analysis pipeline developed at the SSB+Metagen Labs (FMRP-USP / FFCLRP-USP)!
 
 # Why?
-As of the time of writing, there is no single unified approach to process and analyze 16S data derived from nanopore sequencing (a thorough review on the matter was written by Santos and colleagues (2020)). In this repository we describe the steps we take to carry our in-house analyses of nanopore sequencing data. Suggestions/comments are always welcome!
+As of the time of writing, there is no single unified approach to process and analyze 16S data derived from nanopore sequencing (a thorough review on the matter was recently written by [Santos and colleagues](https://www.sciencedirect.com/science/article/pii/S2001037019303745)). In this repository we describe the steps we take to carry our in-house analyses of nanopore sequencing data. Suggestions/comments are always welcome!
 
 # How does our analysis work?
 The upstream process to a microbial community analysis, i.e. taxonomic assignment, is comprised of four main parts:
@@ -15,9 +15,9 @@ Each of these steps will be expanded upon in the following sections.
 
 ## 1. Accessing the basecalled reads
 
-By default, guppy will store basecalled reads (along with raw .fast5 data, logs...) into a complex hierarchy of directories starting with the name of the experiment parent as the parent directory. If demultiplexing was enabled during basecalling, the reads will be sorted and stored in directories referring to the barcode detected in that read. If a quality score threshold has been set (the default is 7), guppy will divide reads further into "passed" or "failed" based on this threshold (a more complete description can be found in the well-documented Guppy Manual (requires login)).
+By default, guppy will store basecalled reads (along with raw .fast5 data, logs...) into a complex hierarchy of directories starting with the name of the experiment parent as the parent directory. If demultiplexing was enabled during basecalling, the reads will be sorted and stored in directories referring to the barcode detected in that read. If a quality score threshold has been set (the default is 7), guppy will divide reads further into "passed" or "failed" based on this threshold (a more complete description can be found in the well-documented [Guppy Manual](https://community.nanoporetech.com/protocols/Guppy-protocol/v/GPB_2003_v1_revU_14Dec2018) (requires login)).
 
-In short, a typical run output can look like this (shortened for brevity):
+A typical run output can look like this (shortened for brevity):
 
 ```
 experiment_name/
@@ -79,7 +79,7 @@ experiment_name/
 
 It is easy to see that with multiple barcodes and high throughput an experiment folder may grow considerably.
 
-For our purposes, we only want to retrieve the contents of the `fastq_pass/` subdirectory. For that, we have developed a pair of scripts: `merge-fastq.sh` and `retrieve-directories.sh` that can be called from anywhere (i.e. to a freshly created analysis directory in `/home/Documents`). `merge-fastq.sh` provides a function that is able to programatically copy the fastq files to tidy directories in the working directory it was called. These tidy directories retain information on the run (flowcell id and experiment date) and contain a single fastq file (a concatenated version of the pre-existing files). `retrieve-directories.sh` takes as an argument a directory and generates a list of "_passed" subdirectories containing .fastq files within that directory's tree. Finally, it calls the merge-fastq function on each of these directories. This effectively retrieves .fastq files of interest to the current working directory.
+For our purposes, we only want to retrieve the contents of the `fastq_pass/` subdirectory. For that, we have developed a pair of scripts: `merge-fastq.sh` and `retrieve-directories.sh` that can be called from anywhere (e.g. to a freshly created analysis directory in `/home/Documents`). `merge-fastq.sh` provides a function that is able to programatically copy the fastq files to tidy directories in the working directory it was called. These tidy directories retain information on the run (flowcell id and experiment date) and contain a single fastq file (a concatenated version of the pre-existing files). `retrieve-directories.sh` takes as an argument a directory and generates a list of "_passed" subdirectories containing .fastq files within that directory's tree. Finally, it calls the merge-fastq function on each of these directories. This effectively retrieves .fastq files of interest to the current working directory.
 
 To simplify the automatization of analysis, there is a wrapper called `get-fastq.sh` that runs both scripts. Run this command from the same directory where the `scripts` directory from this repository is located:
 
