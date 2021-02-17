@@ -18,7 +18,7 @@ if(!require(tidyverse)){
 
 # checking if the conversion table exists; if not, make it (requires accession2name script)
 if(!file.exists("ncbi/nametable.tsv")) {
-  source("accession2name.R")
+  source("../scripts/accession2name.R")
   name_table <- read_tsv(file="ncbi/nametable.tsv", col_names = TRUE)
 } else {
   name_table <- read_tsv(file="ncbi/nametable.tsv", col_names = TRUE)

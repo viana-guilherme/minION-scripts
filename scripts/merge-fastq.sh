@@ -37,9 +37,11 @@ function merge-fastq {
   if [ ! -d ./${new_directory} ]
   then
     mkdir ./"${new_directory}"
-    echo -e "\n\n${new_directory}_merged_fastq drectory created!"
+    echo -e "\n\n${new_directory} drectory created!"
     mv *.fastq ./"${new_directory}"
   else
     mv *.fastq ./"${new_directory}"
   fi
 }
+
+rm -r __merged_fastq # this is a workaround....

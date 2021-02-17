@@ -8,19 +8,19 @@ conda activate python-3_7 # this is needed to load NanoFilt
 
 for directory in */
 do
-  source ../working_dir/minionqc.sh $directory
+  source ../scripts/minionqc.sh $directory
 done
 
 # generating alignments
 
 ## download the refseq 16S database (if needed)
-source ../working_dir/database-download.sh
+source ../scripts/database-download.sh
 
 ## running minimap2
 
 for directory in *merged_fastq/
 do
-  source ../working_dir/run-minimap2.sh "$directory"
+  source ../scripts/run-minimap2.sh "$directory"
 done
 
 mkdir -p alignments
